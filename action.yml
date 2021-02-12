@@ -1,5 +1,5 @@
-name: "Run remark-lint with reviewdog"
-description: "🐶 Run remark-lint with reviewdog on pull requests to improve code review experience. Opinionated configuration for documentation projects."
+name: "Run remark-lint with reviewdog for documentation projects"
+description: "🐶 Run remark-lint with reviewdog on pull requests for documentation projects."
 author: "civicactions"
 inputs:
   workdir:
