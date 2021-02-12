@@ -1,16 +1,24 @@
-# Reviewdog/action-remark-lint GitHub Action
+# civicactions/action-remark-lint-docs GitHub Action
 
-[![Test](https://github.com/reviewdog/action-remark-lint/workflows/Test/badge.svg)](https://github.com/reviewdog/action-remark-lint/actions?query=workflow%3ATest)
-[![reviewdog](https://github.com/reviewdog/action-remark-lint/workflows/reviewdog/badge.svg)](https://github.com/reviewdog/action-remark-lint/actions?query=workflow%3Areviewdog)
-[![depup](https://github.com/reviewdog/action-remark-lint/workflows/depup/badge.svg)](https://github.com/reviewdog/action-remark-lint/actions?query=workflow%3Adepup)
-[![release](https://github.com/reviewdog/action-remark-lint/workflows/release/badge.svg)](https://github.com/reviewdog/action-remark-lint/actions?query=workflow%3Arelease)
-[![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/reviewdog/action-remark-lint?logo=github\&sort=semver)](https://github.com/reviewdog/action-remark-lint/releases)
+[![Test](https://github.com/civicactions/action-remark-lint-docs/workflows/Test/badge.svg)](https://github.com/civicactions/action-remark-lint-docs/actions?query=workflow%3ATest)
+[![reviewdog](https://github.com/civicactions/action-remark-lint-docs/workflows/reviewdog/badge.svg)](https://github.com/civicactions/action-remark-lint-docs/actions?query=workflow%3Areviewdog)
+[![depup](https://github.com/civicactions/action-remark-lint-docs/workflows/depup/badge.svg)](https://github.com/civicactions/action-remark-lint-docs/actions?query=workflow%3Adepup)
+[![release](https://github.com/civicactions/action-remark-lint-docs/workflows/release/badge.svg)](https://github.com/civicactions/action-remark-lint-docs/actions?query=workflow%3Arelease)
+[![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/civicactions/action-remark-lint-docs?logo=github\&sort=semver)](https://github.com/civicactions/action-remark-lint-docs/releases)
 [![action-bumpr supported](https://img.shields.io/badge/bumpr-supported-ff69b4?logo=github\&link=https://github.com/haya14busa/action-bumpr)](https://github.com/haya14busa/action-bumpr)
 
 ![action screenshot](https://user-images.githubusercontent.com/17570430/102060312-4ee5e000-3df2-11eb-8c82-767afeccd8db.png)
 ![action screenshot](https://user-images.githubusercontent.com/17570430/102059912-d3842e80-3df1-11eb-9b0a-2e04eab5e294.png)
 
 This action runs [remark-lint](https://github.com/remarkjs/remark-lint) with [reviewdog](https://github.com/reviewdog/reviewdog) on pull requests to improve code review experience.
+
+This is based on [reviewdog/action-remark-lint](https://github.com/reviewdog/action-remark-lint) but comes with an opinionated configuration suitable for documentation and similar writing.
+
+Specifically:
+
+* Is tuned to work on Prettier auto-formatted CommonMark markdown
+* Includes configuration for both problems (which cause a hard fail) and suggestions (which leave info feedback only)
+* Includes retext configuration which provides language feedback
 
 ## Quick start
 
@@ -26,7 +34,7 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - name: remark-lint
-        uses: reviewdog/action-remark-lint@v1
+        uses: civicactions/action-remark-lint-docs@v1
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           reporter: github-pr-check
@@ -54,10 +62,6 @@ jobs:
 
 **Optional**. Tool name to use for reviewdog reporter. Defaults to `remark-lint`.
 
-### `level`
-
-**Optional**. Report level for reviewdog `[info, warning, error]`. It's same as `-level` flag of reviewdog. Defaults to `error`.
-
 ### `reporter`
 
 **Optional**. Reporter of reviewdog command `[github-pr-check, github-pr-review, github-check]`. Default is `github-pr-check`.
@@ -65,10 +69,6 @@ jobs:
 ### `filter_mode`
 
 **Optional**. Filtering mode for the reviewdog command `[added, diff_context, file, nofilter]`. Defaults to `added`.
-
-#### `fail_on_error`
-
-**Optional**. Exit code for when reviewdog when errors are found `[true, false]`. Defaults to `false`.
 
 ### `reviewdog_flags`
 
