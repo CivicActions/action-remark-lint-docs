@@ -11,8 +11,11 @@ RUN apk --no-cache -U add git
 
 COPY entrypoint.sh /entrypoint.sh
 
-COPY config/* /config/
-RUN npm install --no-save --global --no-update-notifier /config
+COPY config/* /src/
+RUN yarn install --production --non-interactive --cwd /src/ && \
+  yarn cache clean --force --cwd /src/
+COPY entrypoint.sh ./
+ENV PATH="/src/node_modules/.bin:${PATH}"
 
 ENTRYPOINT ["/entrypoint.sh"]
 CMD []
