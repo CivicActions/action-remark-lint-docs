@@ -9,7 +9,8 @@ export REVIEWDOG_GITHUB_API_TOKEN="${INPUT_GITHUB_TOKEN}"
 
 # Only scan added and modified files to reduce volume of output
 # - avoids hitting 65535 character Github API limit.
-export FILES=$(git diff --diff-filter=AM --name-status master | cut -f2)
+export FILES=$(git diff --diff-filter=AM --name-status "${GITHUB_BASE_REF}" | cut -f2)
+echo "Checking files: ${FILES}"
 
 # NOTE: ${VAR,,} Is bash 4.0 syntax to make strings lowercase.
 echo "[action-remark-lint] Checking markdown code with the remark-lint linter and reviewdog..."
