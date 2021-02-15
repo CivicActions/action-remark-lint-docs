@@ -50,6 +50,10 @@ jobs:
 
 **Optional**. The directory to run remark-lint in. Defaults to `.`.
 
+#### `remark_paths`
+
+**Optional**. Remark-lint paths to check. Defaults to `"."`.
+
 #### `remark_args`
 
 **Optional**. Additional remark-lint input arguments. Defaults to `""`.
